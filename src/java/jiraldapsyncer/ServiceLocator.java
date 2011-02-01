@@ -9,22 +9,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class ServiceLocator {
 	private ApplicationContext context;
-    private static ServiceLocator instance  = null;
 
-    protected ServiceLocator(){
-        super();
+    public ServiceLocator(){
         context = new ClassPathXmlApplicationContext("/serverAppContext.xml");
     }
 
-    public static ServiceLocator getInstance(){
-                if(instance == null){
-                        instance = new ServiceLocator();
-                }
-                return instance;
-        }
-
-    public Object lookupService(String serviceBeanName){
-                return context.getBean(serviceBeanName);
-        }
-
+    public Object lookupService(String serviceBeanName) {
+        return context.getBean(serviceBeanName);
+    }
 }

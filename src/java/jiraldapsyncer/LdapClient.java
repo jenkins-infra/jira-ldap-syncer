@@ -69,7 +69,7 @@ public class LdapClient {
 	}
 	
 	public static void main(String[] args) {
-    	ServiceLocator locator = ServiceLocator.getInstance();
+    	ServiceLocator locator = new ServiceLocator();
     	LdapClient ldapClient = (LdapClient) locator.lookupService(LdapClient.ROLE);
     	Map<String, RemoteUser> ldapUsers = ldapClient.getAllUsers();
     	log.info("LDAP directory contains " + ldapUsers.size() + " users");

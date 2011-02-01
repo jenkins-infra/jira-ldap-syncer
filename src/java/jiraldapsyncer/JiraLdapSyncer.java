@@ -20,8 +20,7 @@ public class JiraLdapSyncer {
 	private boolean addNewLdapUsersToJira;
 	
 	public static void main(String[] args) throws RemoteException {
-		ServiceLocator locator = ServiceLocator.getInstance();
-    	JiraLdapSyncer jiraLdapSyncer = (JiraLdapSyncer) locator.lookupService(JiraLdapSyncer.ROLE);
+        JiraLdapSyncer jiraLdapSyncer = (JiraLdapSyncer) new ServiceLocator().lookupService(JiraLdapSyncer.ROLE);
 	    jiraLdapSyncer.sync();
 	}
 

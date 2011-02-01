@@ -9,6 +9,8 @@ import _soapclient.exceptions.RemoteAuthenticationException;
 import _soapclient.exceptions.RemotePermissionException;
 import _soapclient.exceptions.RemoteValidationException;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,8 +41,7 @@ public class JiraSoapClient
     private String token;
 
     public static void main(String[] args) throws Exception {
-    	ServiceLocator locator = ServiceLocator.getInstance();
-    	JiraSoapClient soapClient = (JiraSoapClient) locator.lookupService(JiraSoapClient.ROLE);
+        JiraSoapClient soapClient = (JiraSoapClient) new ServiceLocator().lookupService(JiraSoapClient.ROLE);
     	
     	Map<String, RemoteUser> users = soapClient.getAllUsers();
         log.info("Jira database contains " + users.size() + " users");
@@ -121,12 +122,11 @@ public class JiraSoapClient
     	jiraSoapService.removeUserFromGroup(token, group, user);
     }
     
-    public JiraSoapClient(String adminLogin, String adminPassword) throws ServiceException, java.rmi.RemoteException
-    {
+    public JiraSoapClient(String adminLogin, String adminPassword, String url) throws ServiceException, java.rmi.RemoteException, MalformedURLException {
     	this.adminLogin = adminLogin;
     	this.adminPassword = adminPassword;
         jiraSoapServiceGetter = new JiraSoapServiceServiceLocator();
-        jiraSoapService = jiraSoapServiceGetter.getJirasoapserviceV2();
+        jiraSoapService = jiraSoapServiceGetter.getJirasoapserviceV2(new URL(url));
         login();
     }
 
