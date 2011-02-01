@@ -12,6 +12,7 @@
     	<!-- Jira Login credentials -->
     	<constructor-arg index="0" value="${jira.username}" />
     	<constructor-arg index="1" value="${jira.password}" />
+      <constructor-arg index="2" value="${jira.url}" />
     	<property name="defaultGroup" value="jira-users" />
     	<property name="inactiveGroup" value="inactive-staff" />
     </bean>
