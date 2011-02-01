@@ -1,0 +1,50 @@
+<project default="release" xmlns:j="jelly:core" xmlns:ant="jelly:ant">
+
+	<goal name="fetch-wsdl">
+		<get
+			src="${jira_soapclient.jiraurl}/rpc/soap/jirasoapservice-v2?wsdl"
+			dest="${maven.src.dir}/wsdl/jirasoapservice-v2.wsdl" />
+	</goal>
+	
+	<goal name="wsdl-to-java" prereqs="fetch-wsdl">
+		<attainGoal name="axis:wsdl2java" />
+	</goal>
+
+	<goal name="release" prereqs="java:jar,wsdl-to-java">
+		<j:set var="releasedir" value="release" />
+		<mkdir dir="${releasedir}" />
+		<j:forEach var="lib" items="${pom.dependencies}">
+			<!-- copy the JAR to the shipped local repository if needed -->
+			<j:if
+				test="${lib.getProperty('jar.manifest.classpath').equals('true')}">
+				<j:set var="dependent.projectId"
+					value="${lib.projectId}" />
+				<j:set var="temp" value="${lib.getGroupId()}" />
+				<j:if test="${!empty(temp)}">
+					<j:set var="dependent.projectId"
+						value="${lib.getGroupId()}" />
+				</j:if>
+				<copy todir="${releasedir}">
+					<fileset
+						dir="${maven.repo.local}/${dependent.projectId}/jars">
+						<include name="${lib.artifact}" />
+					</fileset>
+				</copy>
+			</j:if>
+		</j:forEach>
+		<move todir="${releasedir}">
+			<fileset dir="${maven.build.dir}">
+				<include name="${maven.final.name}.jar" />
+			</fileset>
+		</move>
+
+		<echo>
+			-------------------------------------- 
+			Jira LDAP syncer built! Now run:
+
+			java -Xmx512M -jar ${releasedir}/${maven.final.name}.jar
+			--------------------------------------
+		</echo>
+	</goal>
+
+</project>

@@ -1,0 +1,535 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from JiraSoapServiceService WSDL service -->
+
+  <service name="jirasoapservice-v2" provider="java:RPC" style="rpc" use="encoded">
+      <parameter name="wsdlTargetNamespace" value="http://localhost:8080//rpc/soap/jirasoapservice-v2"/>
+      <parameter name="wsdlServiceElement" value="JiraSoapServiceService"/>
+      <parameter name="schemaUnqualified" value="http://exception.rpc.jira.atlassian.com,http://beans.soap.rpc.jira.atlassian.com,http://localhost:8080//rpc/soap/jirasoapservice-v2"/>
+      <parameter name="wsdlServicePort" value="jirasoapservice-v2"/>
+      <parameter name="className" value="_soapclient.JirasoapserviceV2SoapBindingSkeleton"/>
+      <parameter name="wsdlPortType" value="JiraSoapService"/>
+      <parameter name="typeMappingVersion" value="1.1"/>
+      <parameter name="allowedMethods" value="*"/>
+      <parameter name="scope" value="Session"/>
+
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteGroup"
+        type="java:_soapclient.beans.RemoteGroup"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteIssue"
+        type="java:_soapclient.beans.RemoteIssue[]"
+        innerType="cmp-ns:RemoteIssue" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteRoleActors"
+        type="java:_soapclient.beans.RemoteRoleActors"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteConfiguration"
+        type="java:_soapclient.beans.RemoteConfiguration"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteResolution"
+        type="java:_soapclient.beans.RemoteResolution[]"
+        innerType="cmp-ns:RemoteResolution" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteResolution"
+        type="java:_soapclient.beans.RemoteResolution"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteProjectRole"
+        type="java:_soapclient.beans.RemoteProjectRole"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteIssueType"
+        type="java:_soapclient.beans.RemoteIssueType[]"
+        innerType="cmp-ns:RemoteIssueType" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteAttachment"
+        type="java:_soapclient.beans.RemoteAttachment[]"
+        innerType="cmp-ns:RemoteAttachment" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteNamedObject"
+        type="java:_soapclient.beans.RemoteNamedObject"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteIssue"
+        type="java:_soapclient.beans.RemoteIssue"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemotePermissionMapping"
+        type="java:_soapclient.beans.RemotePermissionMapping[]"
+        innerType="cmp-ns:RemotePermissionMapping" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteRoleActor"
+        type="java:_soapclient.beans.RemoteRoleActor"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:AbstractRemoteEntity"
+        type="java:_soapclient.beans.AbstractRemoteEntity"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteWorklog"
+        type="java:_soapclient.beans.RemoteWorklog[]"
+        innerType="cmp-ns:RemoteWorklog" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteFilter"
+        type="java:_soapclient.beans.RemoteFilter[]"
+        innerType="cmp-ns:RemoteFilter" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteVersion"
+        type="java:_soapclient.beans.RemoteVersion"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_xsd_base64Binary"
+        type="java:byte[][]"
+        innerType="cmp-ns:byte" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteSecurityLevel"
+        type="java:_soapclient.beans.RemoteSecurityLevel"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://exception.rpc.jira.atlassian.com"
+        qname="ns:RemoteAuthenticationException"
+        type="java:_soapclient.exceptions.RemoteAuthenticationException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteVersion"
+        type="java:_soapclient.beans.RemoteVersion[]"
+        innerType="cmp-ns:RemoteVersion" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteField"
+        type="java:_soapclient.beans.RemoteField[]"
+        innerType="cmp-ns:RemoteField" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteTimeInfo"
+        type="java:_soapclient.beans.RemoteTimeInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteEntity"
+        type="java:_soapclient.beans.RemoteEntity[]"
+        innerType="cmp-ns:RemoteEntity" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteComponent"
+        type="java:_soapclient.beans.RemoteComponent[]"
+        innerType="cmp-ns:RemoteComponent" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:AbstractNamedRemoteEntity"
+        type="java:_soapclient.beans.AbstractNamedRemoteEntity"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemotePermission"
+        type="java:_soapclient.beans.RemotePermission"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteWorklog"
+        type="java:_soapclient.beans.RemoteWorklog"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemotePriority"
+        type="java:_soapclient.beans.RemotePriority"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteIssueType"
+        type="java:_soapclient.beans.RemoteIssueType"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteUser"
+        type="java:_soapclient.beans.RemoteUser"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemotePermissionScheme"
+        type="java:_soapclient.beans.RemotePermissionScheme"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteUser"
+        type="java:_soapclient.beans.RemoteUser[]"
+        innerType="cmp-ns:RemoteUser" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://exception.rpc.jira.atlassian.com"
+        qname="ns:RemoteException"
+        type="java:_soapclient.exceptions.RemoteException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteFilter"
+        type="java:_soapclient.beans.RemoteFilter"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteStatus"
+        type="java:_soapclient.beans.RemoteStatus[]"
+        innerType="cmp-ns:RemoteStatus" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteField"
+        type="java:_soapclient.beans.RemoteField"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://exception.rpc.jira.atlassian.com"
+        qname="ns:RemotePermissionException"
+        type="java:_soapclient.exceptions.RemotePermissionException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemotePriority"
+        type="java:_soapclient.beans.RemotePriority[]"
+        innerType="cmp-ns:RemotePriority" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteProjectRoleActors"
+        type="java:_soapclient.beans.RemoteProjectRoleActors"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemotePermission"
+        type="java:_soapclient.beans.RemotePermission[]"
+        innerType="cmp-ns:RemotePermission" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteStatus"
+        type="java:_soapclient.beans.RemoteStatus"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_xsd_string"
+        type="java:java.lang.String[]"
+        innerType="cmp-ns:string" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteAvatar"
+        type="java:_soapclient.beans.RemoteAvatar"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteFieldValue"
+        type="java:_soapclient.beans.RemoteFieldValue"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteSecurityLevel"
+        type="java:_soapclient.beans.RemoteSecurityLevel[]"
+        innerType="cmp-ns:RemoteSecurityLevel" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteProjectRole"
+        type="java:_soapclient.beans.RemoteProjectRole[]"
+        innerType="cmp-ns:RemoteProjectRole" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:AbstractRemoteConstant"
+        type="java:_soapclient.beans.AbstractRemoteConstant"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteNamedObject"
+        type="java:_soapclient.beans.RemoteNamedObject[]"
+        innerType="cmp-ns:RemoteNamedObject" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteFieldValue"
+        type="java:_soapclient.beans.RemoteFieldValue[]"
+        innerType="cmp-ns:RemoteFieldValue" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteServerInfo"
+        type="java:_soapclient.beans.RemoteServerInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemotePermissionMapping"
+        type="java:_soapclient.beans.RemotePermissionMapping"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteCustomFieldValue"
+        type="java:_soapclient.beans.RemoteCustomFieldValue[]"
+        innerType="cmp-ns:RemoteCustomFieldValue" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteEntity"
+        type="java:_soapclient.beans.RemoteEntity"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteScheme"
+        type="java:_soapclient.beans.RemoteScheme"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteProject"
+        type="java:_soapclient.beans.RemoteProject"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteComponent"
+        type="java:_soapclient.beans.RemoteComponent"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteComment"
+        type="java:_soapclient.beans.RemoteComment[]"
+        innerType="cmp-ns:RemoteComment" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteCustomFieldValue"
+        type="java:_soapclient.beans.RemoteCustomFieldValue"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemotePermissionScheme"
+        type="java:_soapclient.beans.RemotePermissionScheme[]"
+        innerType="cmp-ns:RemotePermissionScheme" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://exception.rpc.jira.atlassian.com"
+        qname="ns:RemoteValidationException"
+        type="java:_soapclient.exceptions.RemoteValidationException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteProject"
+        type="java:_soapclient.beans.RemoteProject[]"
+        innerType="cmp-ns:RemoteProject" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteAvatar"
+        type="java:_soapclient.beans.RemoteAvatar[]"
+        innerType="cmp-ns:RemoteAvatar" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteComment"
+        type="java:_soapclient.beans.RemoteComment"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteRoleActor"
+        type="java:_soapclient.beans.RemoteRoleActor[]"
+        innerType="cmp-ns:RemoteRoleActor" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.jira.atlassian.com"
+        qname="ns:RemoteAttachment"
+        type="java:_soapclient.beans.RemoteAttachment"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://localhost:8080//rpc/soap/jirasoapservice-v2"
+        qname="ns:ArrayOf_tns1_RemoteScheme"
+        type="java:_soapclient.beans.RemoteScheme[]"
+        innerType="cmp-ns:RemoteScheme" xmlns:cmp-ns="http://beans.soap.rpc.jira.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+  </service>
+</deployment>

@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+    <pomVersion>3</pomVersion>
+    <name>Jira LDAP syncer</name>
+    <id>jira-ldap-syncer</id>
+    <currentVersion>3.12</currentVersion>
+    <organization>
+        <name>Sun Microsystems</name>
+        <url>http://www.sun.com</url>
+    </organization>
+    <package>jiraldapsyncer</package>
+    <shortDescription>Jira LDAP Syncer</shortDescription>
+    
+    <!-- Axis Dependencies -->
+    <dependencies> 
+        <dependency>
+            <id>axis</id>
+            <groupId>axis</groupId>
+            <artifactId>axis</artifactId>
+            <version>1.3</version>
+            <properties>
+                <jar.manifest.classpath>true</jar.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>axis</groupId>
+            <artifactId>axis-jaxrpc</artifactId>
+            <version>1.3</version>
+            <properties>
+                <jar.manifest.classpath>true</jar.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>axis</groupId>
+            <artifactId>axis-saaj</artifactId>
+            <version>1.3</version>
+            <properties>
+                <jar.manifest.classpath>true</jar.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>axis</groupId>
+            <artifactId>axis-wsdl4j</artifactId>
+            <version>1.5.1</version>
+            <properties>
+                <jar.manifest.classpath>true</jar.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>axis</groupId>
+            <artifactId>axis-ant</artifactId>
+            <version>1.3</version>
+            <properties>
+                <jar.manifest.classpath>true</jar.manifest.classpath>
+            </properties>
+        </dependency>
+
+        <dependency>
+            <id>commons-logging</id>
+            <version>1.0.4</version>
+            <properties>
+                <jar.manifest.classpath>true</jar.manifest.classpath>
+            </properties>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-discovery</groupId>
+            <artifactId>commons-discovery</artifactId>
+            <version>0.2</version>
+            <properties>
+                <jar.manifest.classpath>true</jar.manifest.classpath>
+            </properties>
+        </dependency>
+
+        <dependency>
+            <id>activation</id>
+            <version>1.0.2</version>
+            <properties>
+                <jar.manifest.classpath>true</jar.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <id>javamail</id>
+            <version>1.3.2</version>
+            <properties>
+                <jar.manifest.classpath>true</jar.manifest.classpath>
+            </properties>
+        </dependency>
+        
+        <!-- Spring -->
+        <dependency>
+        	<groupId>org.springframework.ldap</groupId>
+        	<artifactId>spring-ldap</artifactId>
+        	<version>1.2.1</version>
+            <properties>
+                <jar.manifest.classpath>true</jar.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-beans</artifactId>
+        	<version>2.0.6</version>
+            <properties>
+                <jar.manifest.classpath>true</jar.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-context</artifactId>
+        	<version>2.0.6</version>
+            <properties>
+                <jar.manifest.classpath>true</jar.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-core</artifactId>
+        	<version>2.0.6</version>
+            <properties>
+                <jar.manifest.classpath>true</jar.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-dao</artifactId>
+        	<version>2.0.6</version>
+            <properties>
+                <jar.manifest.classpath>true</jar.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+        	<groupId>commons-lang</groupId>
+        	<artifactId>commons-lang</artifactId>
+        	<version>2.1</version>
+            <properties>
+                <jar.manifest.classpath>true</jar.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+        	<groupId>log4j</groupId>
+        	<artifactId>log4j</artifactId>
+        	<version>1.2.12</version>
+            <properties>
+                <jar.manifest.classpath>true</jar.manifest.classpath>
+            </properties>
+        </dependency>
+
+    </dependencies>
+    <build>
+        <sourceDirectory>src/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/etc</directory>
+            </resource>
+        </resources>
+    </build>
+</project>
+<!-- vim:set sw=4: -->
