@@ -4,14 +4,15 @@ import _soapclient.beans.RemoteGroup;
 import _soapclient.beans.RemoteUser;
 
 import javax.xml.rpc.ServiceException;
+import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 
 /**
  * @author Kohsuke Kawaguchi
  */
 public class DryRunJiraSoapClient extends JiraSoapClient {
-    public DryRunJiraSoapClient(String adminLogin, String adminPassword) throws ServiceException, RemoteException {
-        super(adminLogin, adminPassword);
+    public DryRunJiraSoapClient(String adminLogin, String adminPassword, String url) throws ServiceException, RemoteException, MalformedURLException {
+        super(adminLogin, adminPassword, url);
     }
 
     @Override
