@@ -116,4 +116,22 @@
       </plugin>
     </plugins>
   </build>
+
+  <scm>
+    <connection>scm:git:git://github.com/jenkinsci/backend-jira-ldap-syncer.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/jenkinsci/backend-jira-ldap-syncer.git</developerConnection>
+    <url>https://github.com/jenkinsci/backend-jira-ldap-syncer</url>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>maven.jenkins-ci.org</id>
+      <url>http://maven.jenkins-ci.org:8081/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>maven.jenkins-ci.org</id>
+      <url>http://maven.jenkins-ci.org:8081/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
 </project>
