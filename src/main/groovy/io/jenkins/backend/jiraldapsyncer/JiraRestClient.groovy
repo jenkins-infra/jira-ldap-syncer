@@ -25,6 +25,7 @@
 package io.jenkins.backend.jiraldapsyncer
 
 import groovyx.net.http.HTTPBuilder
+import groovyx.net.http.HttpResponseDecorator
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
 import org.apache.http.HttpRequest
@@ -104,8 +105,8 @@ public class JiraRestClient {
                     success = true
                 }
 
-                response.failure = { resp ->
-                    // TODO: Some logging of failure
+                response.failure = { HttpResponseDecorator resp, json ->
+                    log.error("createUser response error: ${resp.allHeaders} - ${json}")
                 }
             }
         }
@@ -117,15 +118,15 @@ public class JiraRestClient {
         String actualGroup = getGroup(group)
 
         if (actualGroup == null) {
-            // TODO: Error logging
+            log.error("Couldn't find or create group so failing")
         } else {
             httpBuilder.request(POST, JSON) { req ->
                 uri.path = "/rest/api/2/group/user"
                 query = ["groupname": actualGroup]
                 body = ["name": user.name]
 
-                response.failure = { resp ->
-                    // TODO: Some logging of failure
+                response.failure = { HttpResponseDecorator resp, json ->
+                    log.error("addUserToGroup response error: ${resp.allHeaders} - ${json}")
                 }
             }
         }
@@ -136,8 +137,8 @@ public class JiraRestClient {
             uri.path = "/rest/api/2/group/user"
             query = ["groupname": group, "username": user.name]
 
-            response.failure = { resp ->
-                // TODO: Some logging of failure
+            response.failure = { HttpResponseDecorator resp, json ->
+                log.error("removeUserFromGroup response error: ${resp.allHeaders} - ${json}")
             }
         }
     }
@@ -151,8 +152,8 @@ public class JiraRestClient {
             response.success = { resp, json ->
                 groupName = json.name
             }
-            response.failure = { resp ->
-                // TODO: Some Logging of failures
+            response.failure = { HttpResponseDecorator resp, json ->
+                log.error("createGroup response error: ${resp.allHeaders} - ${json}")
             }
         }
 
