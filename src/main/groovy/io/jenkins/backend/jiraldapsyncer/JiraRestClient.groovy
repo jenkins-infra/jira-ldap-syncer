@@ -57,11 +57,12 @@ public class JiraRestClient {
     public JiraRestClient(String adminLogin, String adminPassword, String url) {
         this.adminLogin = adminLogin
         this.adminPassword = adminPassword
+        if (!url.endsWith("/")) url = url+"/"
         this.httpBuilder = getHttp(url)
 
         // make sure the path & credential is correct
         try {
-            httpBuilder.get(path: "/rest/api/2/mypermissions")
+            httpBuilder.get(path: "rest/api/2/mypermissions")
         } catch (HttpResponseException e) {
             throw new IOException("There's no JIRA at "+url).initCause(e);
         }
@@ -79,7 +80,7 @@ public class JiraRestClient {
         try {
             def user
 
-            httpBuilder.get(path: "/rest/api/2/user", query: [username: id]) { resp, json ->
+            httpBuilder.get(path: "rest/api/2/user", query: [username: id]) { resp, json ->
                 if (resp.status == 200) {
                     user = new RemoteUser(email: json.emailAddress, fullname: json.displayName, name: json.name.toLowerCase())
                 }
@@ -95,7 +96,7 @@ public class JiraRestClient {
 
     public String getGroup(String group) {
         String groupName
-        httpBuilder.get(path: "/resp/api/2/group/member",
+        httpBuilder.get(path: "resp/api/2/group/member",
             query: [groupname: group, maxResults: 1]) { resp, json ->
             if (resp.status != 200) {
                 groupName = createGroup(group)
@@ -182,7 +183,7 @@ public class JiraRestClient {
     }
 
     private List<Map<String,Object>> getAllPagesOfQuery(String api, Map<String,Object> baseParams) {
-        String baseQuery = "/rest/api/2/${api}"
+        String baseQuery = "rest/api/2/${api}"
 
         boolean isLast = false
         int startIndex = 0
