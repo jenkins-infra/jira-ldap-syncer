@@ -45,8 +45,8 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:git://github.com/jenkins-infra/backend-jira-rest-ldap-syncer.git</connection>
-    <developerConnection>scm:git:git@github.com:jenkins-infra/backend-jira-rest-ldap-syncer.git</developerConnection>
+    <connection>scm:git:git://github.com/jenkins-infra/jira-ldap-syncer.git</connection>
+    <developerConnection>scm:git:git@github.com:jenkins-infra/jira-ldap-syncer.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
 
