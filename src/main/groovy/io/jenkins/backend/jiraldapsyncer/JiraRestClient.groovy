@@ -26,6 +26,7 @@ package io.jenkins.backend.jiraldapsyncer
 
 import groovyx.net.http.HTTPBuilder
 import groovyx.net.http.HttpResponseDecorator
+import groovyx.net.http.HttpResponseException
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
 import org.apache.http.HttpRequest
@@ -57,6 +58,13 @@ public class JiraRestClient {
         this.adminLogin = adminLogin
         this.adminPassword = adminPassword
         this.httpBuilder = getHttp(url)
+
+        // make sure the path & credential is correct
+        try {
+            httpBuilder.get(path: "/rest/api/2/mypermissions")
+        } catch (HttpResponseException e) {
+            throw new IOException("There's no JIRA at "+url).initCause(e);
+        }
     }
 
     public Map<String,RemoteUser> getAllUsers() {
@@ -68,15 +76,21 @@ public class JiraRestClient {
     }
 
     public RemoteUser getUser(String id) {
-        def user
+        try {
+            def user
 
-        httpBuilder.get(path: "/rest/api/2/user", query: [username: id]) { resp, json ->
-            if (resp.status == 200) {
-                user = new RemoteUser(email: json.emailAddress, fullname: json.displayName, name: json.name.toLowerCase())
+            httpBuilder.get(path: "/rest/api/2/user", query: [username: id]) { resp, json ->
+                if (resp.status == 200) {
+                    user = new RemoteUser(email: json.emailAddress, fullname: json.displayName, name: json.name.toLowerCase())
+                }
             }
-        }
 
-        return user
+            return user
+        } catch (HttpResponseException e) {
+            if (e.response.status==404)
+                return null;
+            throw e;
+        }
     }
 
     public String getGroup(String group) {

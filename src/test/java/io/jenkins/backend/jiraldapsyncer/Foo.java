@@ -15,5 +15,7 @@ public class Foo {
         RemoteUser jira = jiraLdapSyncer.getJiraRestClient().getUser("kohsuke");
         System.out.println(jira);
 
+        jira = jiraLdapSyncer.getJiraRestClient().getUser("no-such-user");
+        System.out.println(jira);
     }
 }
