@@ -42,7 +42,7 @@ import static groovyx.net.http.Method.POST
 public class JiraRestClient {
     public static final String ROLE = "jiraRestClient"
 
-    private static Log log = LogFactory.getLog(JiraRestClient.class)
+    private static final Log LOG = LogFactory.getLog(JiraRestClient.class)
 
     // jira credentials
     String adminLogin
@@ -106,7 +106,7 @@ public class JiraRestClient {
                 }
 
                 response.failure = { HttpResponseDecorator resp, json ->
-                    log.error("createUser response error: ${resp.allHeaders} - ${json}")
+                    LOG.error("createUser response error: ${resp.allHeaders} - ${json}")
                 }
             }
         }
@@ -118,7 +118,7 @@ public class JiraRestClient {
         String actualGroup = getGroup(group)
 
         if (actualGroup == null) {
-            log.error("Couldn't find or create group so failing")
+            LOG.error("Couldn't find or create group so failing")
         } else {
             httpBuilder.request(POST, JSON) { req ->
                 uri.path = "/rest/api/2/group/user"
@@ -126,7 +126,7 @@ public class JiraRestClient {
                 body = ["name": user.name]
 
                 response.failure = { HttpResponseDecorator resp, json ->
-                    log.error("addUserToGroup response error: ${resp.allHeaders} - ${json}")
+                    LOG.error("addUserToGroup response error: ${resp.allHeaders} - ${json}")
                 }
             }
         }
@@ -138,7 +138,7 @@ public class JiraRestClient {
             query = ["groupname": group, "username": user.name]
 
             response.failure = { HttpResponseDecorator resp, json ->
-                log.error("removeUserFromGroup response error: ${resp.allHeaders} - ${json}")
+                LOG.error("removeUserFromGroup response error: ${resp.allHeaders} - ${json}")
             }
         }
     }
@@ -153,7 +153,7 @@ public class JiraRestClient {
                 groupName = json.name
             }
             response.failure = { HttpResponseDecorator resp, json ->
-                log.error("createGroup response error: ${resp.allHeaders} - ${json}")
+                LOG.error("createGroup response error: ${resp.allHeaders} - ${json}")
             }
         }
 

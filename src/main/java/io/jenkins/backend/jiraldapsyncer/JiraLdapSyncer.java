@@ -34,7 +34,7 @@ import org.apache.commons.logging.LogFactory;
 public class JiraLdapSyncer {
     public static final String ROLE = "jiraLdapSyncer";
 
-    private static Log log = LogFactory.getLog(JiraLdapSyncer.class);
+    private static final Log LOG = LogFactory.getLog(JiraLdapSyncer.class);
 
     private JiraRestClient jiraRestClient;
     private LdapClient ldapClient;
@@ -52,9 +52,9 @@ public class JiraLdapSyncer {
         RemoteUser jira = getJiraRestClient().getUser(id);
 
         if (jira!=null) {
-            log.info(id+ " is already in JIRA");
+            LOG.info(id+ " is already in JIRA");
         } else {
-            log.info("Adding new ldap user " + id + " into Jira");
+            LOG.info("Adding new ldap user " + id + " into Jira");
             getJiraRestClient().createUser(ldap);
         }
     }
@@ -79,7 +79,7 @@ public class JiraLdapSyncer {
         int cntNoMoreInactiveJiraUsers = 0;
         for ( RemoteUser inactiveUser : jiraInactiveUsers.values() ) {
             if ( ldapUsers.containsKey(inactiveUser.getName()) ) {
-                log.info("Jira 'inactive user' " + inactiveUser.getName() + " is now back in LDAP - deleting him from 'inactive-staff' group");
+                LOG.info("Jira 'inactive user' " + inactiveUser.getName() + " is now back in LDAP - deleting him from 'inactive-staff' group");
                 getJiraRestClient().removeUserFromGroup(inactiveUser, jiraInactiveStaff);
                 cntNoMoreInactiveJiraUsers++;
             }
@@ -90,7 +90,7 @@ public class JiraLdapSyncer {
         int diffData = 0;
         for ( RemoteUser ldapUser : ldapUsers.values() ) {
             if ( ! jiraUsers.containsKey(ldapUser.getName()) ) {
-                log.info("Adding new ldap user " + ldapUser.getName() + " into Jira");
+                LOG.info("Adding new ldap user " + ldapUser.getName() + " into Jira");
                 try {
                     if ( getJiraRestClient().createUser(ldapUser) ) {
                         newLdapUsers++;
@@ -105,7 +105,7 @@ public class JiraLdapSyncer {
                                 ||
                                 !jiraUser.getFullname().equalsIgnoreCase( ldapUser.getFullname() )
                         ) {
-                    log.info(
+                    LOG.info(
                             "Some fields different in Jira DB and in LDAP for user " + ldapUser.getName() + " - "
                                     + "ldap:{" + ldapUser.getFullname() + ", " + ldapUser.getEmail() + "}"
                                     + ", jira:{" + jiraUser.getFullname() + ", " + jiraUser.getEmail() + "}"
@@ -120,7 +120,7 @@ public class JiraLdapSyncer {
         int oldJiraUsers = 0;
         for ( RemoteUser jiraUser : jiraUsers.values() ) {
             if ( ! ldapUsers.containsKey(jiraUser.getName()) && !jiraInactiveUsers.containsKey(jiraUser.getName()) ) {
-                log.info("Found old jira user " + jiraUser.getName() + " - moving him to 'inactive-staff' group");
+                LOG.info("Found old jira user " + jiraUser.getName() + " - moving him to 'inactive-staff' group");
                 jiraRestClient.addUserToGroup(jiraUser, jiraInactiveStaff);
                 oldJiraUsers++;
             }
@@ -128,11 +128,11 @@ public class JiraLdapSyncer {
 
         // print stats
         long duration = System.currentTimeMillis() - start;
-        log.info("Jira database synced with LDAP in " + (int)(duration/1000) + " s");
-        log.info("Total number of new LDAP users is " + newLdapUsers);
-        log.info("Total number of old Jira users is " + oldJiraUsers);
-        log.info("Total number of 'rehired' Jira users is " + cntNoMoreInactiveJiraUsers);
-        log.info("Total number of users with different data in Jira DB and LDAP is " + diffData);
+        LOG.info("Jira database synced with LDAP in " + (int)(duration/1000) + " s");
+        LOG.info("Total number of new LDAP users is " + newLdapUsers);
+        LOG.info("Total number of old Jira users is " + oldJiraUsers);
+        LOG.info("Total number of 'rehired' Jira users is " + cntNoMoreInactiveJiraUsers);
+        LOG.info("Total number of users with different data in Jira DB and LDAP is " + diffData);
     }
 
 

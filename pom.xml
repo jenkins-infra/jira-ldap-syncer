@@ -125,20 +125,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>maven-central</id>
-      <url>http://central.maven.org/maven2/</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
-
+  
   <build>
     <plugins>
       <plugin>

@@ -41,7 +41,7 @@ import org.springframework.ldap.core.LdapTemplate;
 public class LdapClient {
     public static final String ROLE = "ldapClient";
 
-    private static Log log = LogFactory.getLog(LdapClient.class);
+    private static final Log LOG = LogFactory.getLog(LdapClient.class);
 
     private LdapTemplate ldapTemplate;
 
@@ -95,7 +95,7 @@ public class LdapClient {
         ServiceLocator locator = new ServiceLocator();
         LdapClient ldapClient = (LdapClient) locator.lookupService(LdapClient.ROLE);
         Map<String, RemoteUser> ldapUsers = ldapClient.getAllUsers();
-        log.info("LDAP directory contains " + ldapUsers.size() + " users");
+        LOG.info("LDAP directory contains " + ldapUsers.size() + " users");
     }
 
     public LdapTemplate getLdapTemplate() {
