@@ -34,7 +34,7 @@
 
   <groupId>io.jenkins.backend</groupId>
   <artifactId>jira-rest-ldap-syncer</artifactId>
-  <version>1.2-SNAPSHOT</version>
+  <version>1.2</version>
   <name>Jira LDAP syncer</name>
 
   <properties>
@@ -52,7 +52,7 @@
   <scm>
     <connection>scm:git:git://github.com/jenkins-infra/jira-ldap-syncer.git</connection>
     <developerConnection>scm:git:git@github.com:jenkins-infra/jira-ldap-syncer.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>jira-rest-ldap-syncer-1.2</tag>
   </scm>
 
   <dependencies>
